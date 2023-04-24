@@ -1,0 +1,71 @@
+/* Set the width and height of the scrollbar */
+::-webkit-scrollbar {
+	width: 12px;
+	height: 12px;
+}
+
+/* Set the background color of the scrollbar */
+::-webkit-scrollbar-track {
+	background-color: #fff;
+}
+
+/* Set the color and style of the scrollbar thumb */
+::-webkit-scrollbar-thumb {
+	background-color: #ccc;
+	border-radius: 6px;
+	border: 3px solid #fff;
+}
+
+/* For Firefox */
+* {
+	scrollbar-width: thin;
+	scrollbar-color: #ccc #fff;
+}
+
+/* Set the color and style of the scrollbar thumb for Firefox */
+*::-webkit-scrollbar-thumb {
+	background-color: #ccc;
+	border-radius: 6px;
+	border: 3px solid #fff;
+}
+
+/* For Internet Explorer */
+*::-ms-scrollbar {
+	width: 12px;
+	height: 12px;
+}
+
+/* Set the color and style of the scrollbar thumb for Internet Explorer */
+*::-ms-scrollbar-thumb {
+	background-color: #ccc;
+	border-radius: 6px;
+	border: 3px solid #fff;
+}
+
+/* For Edge */
+* {
+	scrollbar-width: thin;
+	scrollbar-color: #ccc #fff;
+}
+
+/* Set the color and style of the scrollbar thumb for Edge */
+*::-ms-thumb {
+	background-color: #ccc;
+	border-radius: 6px;
+	border: 3px solid #fff;
+}
+
+/* Hide the scrollbar for all elements except the body */
+*:not(body)::-webkit-scrollbar {
+	display: none;
+}
+
+/* For Firefox */
+*:not(body) {
+	overflow: -moz-scrollbars-none;
+}
+
+/* For Internet Explorer and Edge */
+*:not(body)::-ms-scrollbar {
+	display: none;
+}

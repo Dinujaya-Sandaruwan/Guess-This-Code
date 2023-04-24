@@ -1,281 +1,324 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
 <html lang="en">
-    <head>
-      <meta charset="utf-8">
-    
-      <title>Guess the coding language</title>
-      <meta name="description" content="The HTML5 Herald">
-      <meta name="author" content="SitePoint">
-    
-      <link rel="stylesheet" href="css/css-styles.css">
-      <link rel="preconnect" href="https://fonts.gstatic.com">
-      <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700;800;900&amp;display=swap" rel="stylesheet">
-      <script src="js/dist-axios.min.js"></script>
-      <script src="js/3.6.0-jquery.min.js"></script>
-      <script src="js/2.0.8-postscribe.min.js"></script>
-      <script src="js/1.0.6-iconify.min.js"></script>
-      <script data-ad-client="ca-pub-7658479796622508" async src="js/js-adsbygoogle.js"></script>
-      <meta name="viewport" content="width=device-width, initial-scale=1">  
-    </head>
-    
-    <body>
-        <div class="main-container">
-            <div class="points-container">
-                <h1 class="top-score-value">0</h1>
-                <h3 class="top-score-title">Points</h3>
-            </div>
-            <div id="coding-container">
-                <h3 class="question">Which programming language is this?</h3>
-                <div class="lds-ripple"><div></div><div></div></div>
-                <div id="coding-block">
+	<head>
+		<meta charset="utf-8" />
 
-                </div>
-            </div>
-            <div class="answers-container">
-                <button class="btn-general btn-answers btn0"></button>
-                <button class="btn-general btn-answers btn1"></button>
-                <button class="btn-general btn-answers btn2"></button>
-                <button class="btn-general btn-answers btn3"></button>
-            </div>
-            <div class="bottom-container">
-                <div class="final-score-container">
-                    <span class="final-score-title">Final score: </span>
-                    <span class="final-score-value">0 Points</span>
-                    <p class="end-text"> Take a screenshot and show it to Mansoor Codes :)</p>
-                </div>
-                <button class="btn-general btn-next">Next</button>
-                <button class="btn-general btn-retry">Retry<span class="iconify" data-inline="false" data-icon="akar-icons:arrow-right" style="font-size: 22px;"></span></button>
-            </div>
-        </div>
-        
-      <script src="js/6921-js-scripts.js"></script>
-      <script>
-          var gistObjectArray
-          var gistIndex = 0
-          var randomLanguages = ["Swift", "JavaScript", "Java", "Kotlin", "Shell", "PowerShell", "C++", "C", "C#", "Ruby", "Dart", "Python", "Objective-C", "Perl", "Go", "PHP", "R", "Dockerfile", "CSS", "HTML", "TypeScript", "Haskell", "GLSL"]
-          var rightLanguage
-          var rightNumberIndex
-          var points = 0 
+		<title>Guess the coding language</title>
+		<meta name="description" content="The HTML5 Herald" />
+		<meta name="author" content="SitePoint" />
+		<link rel="icon" href="img/favicon.png" type="image/png" />
 
-          $( document ).ready(function() {
-            clearButtons()
-            fetchGists()
+		<link rel="stylesheet" href="css/css-styles.css" />
+		<link rel="stylesheet" href="css/scrool-bar.css" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700;800;900&amp;display=swap"
+			rel="stylesheet"
+		/>
+		<script src="js/dist-axios.min.js"></script>
+		<script src="js/3.6.0-jquery.min.js"></script>
+		<script src="js/2.0.8-postscribe.min.js"></script>
+		<script src="js/1.0.6-iconify.min.js"></script>
+		<script
+			data-ad-client="ca-pub-7658479796622508"
+			async
+			src="js/js-adsbygoogle.js"
+		></script>
+		<script src="https://unpkg.com/ionicons@latest/dist/ionicons.js"></script>
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+	</head>
 
-            //button clicks
-            $( ".btn-answers" ).click(function(event) {
-                let chosenLanguage = $(event.target).text()
-                if (chosenLanguage == rightLanguage){
-                    showSuccessUI(event.target)
-                } else{
-                    showFailUI(event.target)
-                }
-            });
+	<body>
+		<div class="main-container">
+			<div class="points-container">
+				<h1 class="top-score-value">0</h1>
+				<h3 class="top-score-title">Points</h3>
+			</div>
+			<div id="coding-container">
+				<h3 class="question">Which programming language is this?</h3>
+				<div class="lds-ripple">
+					<div></div>
+					<div></div>
+				</div>
+				<div id="coding-block"></div>
+			</div>
+			<div class="answers-container">
+				<button class="btn-general btn-answers btn0"></button>
+				<button class="btn-general btn-answers btn1"></button>
+				<button class="btn-general btn-answers btn2"></button>
+				<button class="btn-general btn-answers btn3"></button>
+			</div>
+			<div class="bottom-container">
+				<div class="final-score-container">
+					<span class="final-score-title">Final score: </span>
+					<span class="final-score-value">0 Points</span>
+					<p class="end-text">Take a screenshot and show it to Dinujaya :)</p>
+				</div>
+				<button class="btn-general btn-next">Next</button>
+				<button class="btn-general btn-retry">
+					Retry <ion-icon name="arrow-forward-circle"></ion-icon>
+				</button>
+			</div>
+		</div>
 
-            $( ".btn-next" ).click(function(event) {
-                gistIndex += 1
-                refreshUI()
-            });
+		<script src="js/6921-js-scripts.js"></script>
+		<script>
+			var gistObjectArray;
+			var gistIndex = 0;
+			var randomLanguages = [
+				"Swift",
+				"JavaScript",
+				"Java",
+				"Kotlin",
+				"Shell",
+				"PowerShell",
+				"C++",
+				"C",
+				"C#",
+				"Ruby",
+				"Dart",
+				"Python",
+				"Objective-C",
+				"Perl",
+				"Go",
+				"PHP",
+				"R",
+				"Dockerfile",
+				"CSS",
+				"HTML",
+				"TypeScript",
+				"Haskell",
+				"GLSL",
+			];
+			var rightLanguage;
+			var rightNumberIndex;
+			var points = 0;
 
-            $( ".btn-retry" ).click(function(event) {
-                gistIndex += 1
-                points = 0
-                refreshUI()
-            });
+			$(document).ready(function () {
+				clearButtons();
+				fetchGists();
 
-          });
+				//button clicks
+				$(".btn-answers").click(function (event) {
+					let chosenLanguage = $(event.target).text();
+					if (chosenLanguage == rightLanguage) {
+						showSuccessUI(event.target);
+					} else {
+						showFailUI(event.target);
+					}
+				});
 
-          var token1 = "ghp_tP7Za2ohf"
-          var token2 = "DnQsC4KvAt4ql"
-          var token3 = "192Q7esV0o6Uia"
+				$(".btn-next").click(function (event) {
+					gistIndex += 1;
+					refreshUI();
+				});
 
-          const client = axios.create({
-                auth: {
-                    username: "mansoorshahsaid", 
-                    password: token1+token2+token3
-                },
-                headers: {
-                    "Accept": "application/vnd.github.v3+json"
-                }
-          });
+				$(".btn-retry").click(function (event) {
+					gistIndex += 1;
+					points = 0;
+					refreshUI();
+				});
+			});
 
-          var fetchCount = 0
-          function fetchGists(){
-            let random = getRandomInt(100)
+			var token1 = "ghp_tP7Za2ohf";
+			var token2 = "DnQsC4KvAt4ql";
+			var token3 = "192Q7esV0o6Uia";
 
-            client.get('https://api.github.com/gists/public?page='+random)
-            .then(function (response) {
-                // handle success
-                //console.log(response);
+			const client = axios.create({
+				auth: {
+					username: "mansoorshahsaid",
+					password: token1 + token2 + token3,
+				},
+				headers: {
+					Accept: "application/vnd.github.v3+json",
+				},
+			});
 
-                let gistArrayJson = response["data"]
-                gistObjectArray = findBestGists(gistArrayJson)
-                if (gistObjectArray == null) {
-                    if (fetchCount <= 5) {
-                        fetchGists()
-                        count += 1
-                    } else {
-                        alert("Please reload this page. Something went wrong")
-                    }
-                } else {
-                    fetchCount = 0
-                    resetVariables()
-                    //console.log(gistObjectArray)
-                    refreshUI()
-                }
-            })
-            .catch(function (error) {
-                // handle error
-                console.log(error);
-            })
-          }
+			var fetchCount = 0;
+			function fetchGists() {
+				let random = getRandomInt(100);
 
-          function resetVariables() {
-              gistIndex = 0
-              rightLanguage = null
-              rightNumberIndex = null
-          }
+				client
+					.get("https://api.github.com/gists/public?page=" + random)
+					.then(function (response) {
+						// handle success
+						//console.log(response);
 
-          function refreshUI(){
-              clearButtons()
-              
-              if (gistIndex == gistObjectArray.length) {
-                  fetchGists()
-                  return
-              }
+						let gistArrayJson = response["data"];
+						gistObjectArray = findBestGists(gistArrayJson);
+						if (gistObjectArray == null) {
+							if (fetchCount <= 5) {
+								fetchGists();
+								count += 1;
+							} else {
+								alert("Please reload this page. Something went wrong");
+							}
+						} else {
+							fetchCount = 0;
+							resetVariables();
+							//console.log(gistObjectArray)
+							refreshUI();
+						}
+					})
+					.catch(function (error) {
+						// handle error
+						console.log(error);
+					});
+			}
 
-              let gistObject = gistObjectArray[gistIndex]
-              rightLanguage = gistObject["language"]
+			function resetVariables() {
+				gistIndex = 0;
+				rightLanguage = null;
+				rightNumberIndex = null;
+			}
 
-              let randomAnswers = []
-              while (randomAnswers.length != 4) {
-                var randomAns = randomLanguages[getRandomInt(randomLanguages.length-1)]
-                if (!randomAnswers.includes(randomAns) && randomAns != rightLanguage) {
-                    randomAnswers.push(randomAns)
-                }
-              }
+			function refreshUI() {
+				clearButtons();
 
-              rightNumberIndex = getRandomInt(randomAnswers.length-1)
-              randomAnswers[rightNumberIndex] = rightLanguage
+				if (gistIndex == gistObjectArray.length) {
+					fetchGists();
+					return;
+				}
 
-              for (var i = 0; i < randomAnswers.length; i++) {
-                  $(".btn"+i).text(randomAnswers[i])
-              }
+				let gistObject = gistObjectArray[gistIndex];
+				rightLanguage = gistObject["language"];
 
-              $( "#coding-block" ).empty();
-              $(".lds-ripple").css("display", "none");
-              postscribe('#coding-block', "<script class='gist-code' src='"+gistObject['embed_url']+"'><\/script>");
+				let randomAnswers = [];
+				while (randomAnswers.length != 4) {
+					var randomAns =
+						randomLanguages[getRandomInt(randomLanguages.length - 1)];
+					if (
+						!randomAnswers.includes(randomAns) &&
+						randomAns != rightLanguage
+					) {
+						randomAnswers.push(randomAns);
+					}
+				}
 
-          }
+				rightNumberIndex = getRandomInt(randomAnswers.length - 1);
+				randomAnswers[rightNumberIndex] = rightLanguage;
 
-          function clearButtons() {
-              $(".btn-answers").removeClass("btn-success")
-              $(".btn-answers").removeClass("btn-fail")
-              $(".btn-answers").removeClass("disable")
+				for (var i = 0; i < randomAnswers.length; i++) {
+					$(".btn" + i).text(randomAnswers[i]);
+				}
 
-              $(".bottom-container").addClass("hide")
-              $(".bottom-container").addClass("hide")
-              $(".btn-next").addClass("hide")
-              $(".btn-retry").addClass("hide")
-              $(".final-score-container").addClass("hide")
-              $(".top-score-value").text(points)
-              $(".final-score-value").text(points+" Points")
-          }
+				$("#coding-block").empty();
+				$(".lds-ripple").css("display", "none");
+				postscribe(
+					"#coding-block",
+					"<script class='gist-code' src='" +
+						gistObject["embed_url"] +
+						"'><\/script>"
+				);
+			}
 
-          function showSuccessUI(buttonTapped) {
-              $(buttonTapped).addClass( "btn-success" );
-              points += 50
-              $(".top-score-value").text(points)
-              $(".bottom-container").removeClass("hide")
-              $(".btn-next").removeClass("hide")
-              $(".btn-retry").addClass("hide")
-              $(".final-score-container").addClass("hide")
-              $(".btn-answers").addClass("disable")
+			function clearButtons() {
+				$(".btn-answers").removeClass("btn-success");
+				$(".btn-answers").removeClass("btn-fail");
+				$(".btn-answers").removeClass("disable");
 
-          }
+				$(".bottom-container").addClass("hide");
+				$(".bottom-container").addClass("hide");
+				$(".btn-next").addClass("hide");
+				$(".btn-retry").addClass("hide");
+				$(".final-score-container").addClass("hide");
+				$(".top-score-value").text(points);
+				$(".final-score-value").text(points + " Points");
+			}
 
-          function showFailUI(buttonTapped) {
-            $(buttonTapped).addClass( "btn-fail" );
-            $(".btn"+rightNumberIndex).addClass( "btn-success" )
-            $(".final-score-value").text(points+" Points")
+			function showSuccessUI(buttonTapped) {
+				$(buttonTapped).addClass("btn-success");
+				points += 50;
+				$(".top-score-value").text(points);
+				$(".bottom-container").removeClass("hide");
+				$(".btn-next").removeClass("hide");
+				$(".btn-retry").addClass("hide");
+				$(".final-score-container").addClass("hide");
+				$(".btn-answers").addClass("disable");
+			}
 
-            $(".bottom-container").removeClass("hide")
-            $(".btn-next").addClass("hide")
-            $(".btn-retry").removeClass("hide")
-            $(".final-score-container").removeClass("hide")
-            $(".btn-answers").addClass("disable")
-          }
+			function showFailUI(buttonTapped) {
+				$(buttonTapped).addClass("btn-fail");
+				$(".btn" + rightNumberIndex).addClass("btn-success");
+				$(".final-score-value").text(points + " Points");
 
-          function findBestGists(gistArrayJson){
-              //gistArrayJson is an array of dictionaries
-              var gistObjectArray = []
-              for (var i = 0; i < gistArrayJson.length; i++){
-                  let gistJson = gistArrayJson[i]
-                  let htmlUrl = gistJson["html_url"]
+				$(".bottom-container").removeClass("hide");
+				$(".btn-next").addClass("hide");
+				$(".btn-retry").removeClass("hide");
+				$(".final-score-container").removeClass("hide");
+				$(".btn-answers").addClass("disable");
+			}
 
-                  let files = gistJson["files"]
-                  let firstFile = files[Object.keys(files)[0]]
-                  let secondFile = files[Object.keys(files)[1]]
-                  
-                  if (firstFile == undefined || secondFile != undefined) {
-                      continue;
-                  }
+			function findBestGists(gistArrayJson) {
+				//gistArrayJson is an array of dictionaries
+				var gistObjectArray = [];
+				for (var i = 0; i < gistArrayJson.length; i++) {
+					let gistJson = gistArrayJson[i];
+					let htmlUrl = gistJson["html_url"];
 
-                  let size = firstFile["size"]
-                  let language = firstFile["language"]
-                //   console.log(gistJson)
-                //   console.log(firstFile)
-                //   console.log(secondFile)
+					let files = gistJson["files"];
+					let firstFile = files[Object.keys(files)[0]];
+					let secondFile = files[Object.keys(files)[1]];
 
-                  if (!isValidLanguage(language)) {
-                      continue;
-                  } else {
-                    var gistObject = {}
-                    gistObject["embed_url"] = htmlUrl+".js"
-                    gistObject["language"] = language
-                    gistObjectArray.push(gistObject)
-                  }
-              }
+					if (firstFile == undefined || secondFile != undefined) {
+						continue;
+					}
 
-              if (gistObjectArray.length != 0) {
-                  return gistObjectArray
-              } else {
-                return null
-              }
-          }
+					let size = firstFile["size"];
+					let language = firstFile["language"];
+					//   console.log(gistJson)
+					//   console.log(firstFile)
+					//   console.log(secondFile)
 
-          function isValidLanguage(language) {
-                  switch (language){
-                      case null:
-                      case "Markdown":
-                      case "JSON":
-                      case "Text":
-                      case "Ignore List":
-                      case "XML":
-                      case "Jupyter Notebook":
-                      case "CSV":
-                      case "Maven POM":
-                      case "YAML":
-                      case "AutoHotkey":
-                      case "TSV":
-                      case "reStructuredText":
-                      case "VCL":
-                      case "Diff":
-                      case "TeX":
-                      case "TOML":
-                      case "Windows Registry Entries":
-                      case "SVG":
-                      case "Ballerina":
-                      case "Org":
+					if (!isValidLanguage(language)) {
+						continue;
+					} else {
+						var gistObject = {};
+						gistObject["embed_url"] = htmlUrl + ".js";
+						gistObject["language"] = language;
+						gistObjectArray.push(gistObject);
+					}
+				}
 
-                          return false
-                      default:
-                          return true
-                  }
-          }
+				if (gistObjectArray.length != 0) {
+					return gistObjectArray;
+				} else {
+					return null;
+				}
+			}
 
-          function getRandomInt(max) {
-            return Math.floor(Math.random() * Math.floor(max));
-          }
-      </script>
-    </body>
+			function isValidLanguage(language) {
+				switch (language) {
+					case null:
+					case "Markdown":
+					case "JSON":
+					case "Text":
+					case "Ignore List":
+					case "XML":
+					case "Jupyter Notebook":
+					case "CSV":
+					case "Maven POM":
+					case "YAML":
+					case "AutoHotkey":
+					case "TSV":
+					case "reStructuredText":
+					case "VCL":
+					case "Diff":
+					case "TeX":
+					case "TOML":
+					case "Windows Registry Entries":
+					case "SVG":
+					case "Ballerina":
+					case "Org":
+						return false;
+					default:
+						return true;
+				}
+			}
+
+			function getRandomInt(max) {
+				return Math.floor(Math.random() * Math.floor(max));
+			}
+		</script>
+	</body>
 </html>
